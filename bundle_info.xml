@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Build with ChimeraX:  devel build <this folder>   Test with:  devel install <this folder> -->
+<BundleInfo name="ChimeraX-StructureHierarchy" version="1.2.3" customInit="true" package="chimerax.structurehierarchy" minSessionVersion="1" maxSessionVersion="1">
+  <Author>Ayan Bhowmik</Author>
+  <Email>ayan.bhowmik.bd@gmail.com</Email>
+  <URL>https://github.com/OriginalAyan/Lattice-StructureHierarchy</URL>
+  <Synopsis>Discovery Studio-style hierarchy tree: browse, search, select, show/hide, color, mark and delete models, chains, residues and atoms.</Synopsis>
+  <Description>
+## StructureHierarchy
+
+**See your whole structure as a tree, and work on it from there.**
+
+StructureHierarchy adds a hierarchy panel to ChimeraX: every open model as Model, Chain, Residue and Atom, in the spirit of the hierarchy view of BIOVIA Discovery Studio, with some upgrades. Everything you select in the tree is a normal ChimeraX selection, so all your usual commands and mouse modes still apply.
+
+Open it from Tools, Structure Analysis, Structure Hierarchy, or type `hierarchy`.
+
+### What you can do
+
+* **Browse and search** - expand chains and residues; type `101` to see everything numbered 101 (e.g. Pro101), or `pro6, pro9` for several residues at once.
+* **Select both ways** - click in the tree to select in 3D; select in 3D and the tree jumps to it.
+* **Show or hide anything** - a check box on every model, chain, residue and atom.
+* **Color and label** - from the right-click menu.
+* **Mark Important residues** - click the star next to a residue or atom; show *Important only* to focus on them.
+* **Select neighbours** - pick a distance in Angstroms and select residues or atoms around a ligand or any selection.
+* **Delete** - remove residues, waters, ions or ligands with the X button or the Delete key. Undo and redo work (Ctrl+Z, Ctrl+Y).
+
+### When it helps
+
+* **Cleaning a structure before analysis** - select all waters or an unwanted ligand or ion, press Delete, and undo if you change your mind.
+* **Checking a binding site** - select the ligand, choose 4 Angstroms, and see every pocket residue listed with its name and number.
+* **Reviewing docking results** - star the active-site residues once, then return to them across poses. Add the marks to your docking PDBQT file with `hierarchy marks poses.pdbqt` so the list travels with the file.
+* **Working with several chains or models** - tick chains on and off without typing atom specifications.
+* **Teaching and presentations** - navigate and highlight residues without remembering command syntax.
+
+### Important marks travel with your files
+
+Stars are stored as ordinary REMARK 777 header lines in PDB and PDBQT files. Other programs ignore them, coordinates are untouched, and the marks are restored when the file is opened. To add them to an existing docking file:
+
+    hierarchy marks poses.pdbqt #1
+
+This adds or updates only the remark lines; poses and torsion records stay as they were.
+
+### How it works (briefly)
+
+The panel keeps a fast numpy snapshot of each structure and builds tree rows only when they are expanded, so large models stay responsive. Selection is kept in sync through ChimeraX triggers, and delete, label and marks are recorded as undoable actions.
+
+### Install from a wheel
+
+Download the .whl file from the GitHub releases page, then in ChimeraX run:
+
+    toolshed install C:/path/ChimeraX_StructureHierarchy-1.2.3-py3-none-any.whl
+
+To remove it:
+
+    toolshed uninstall ChimeraX-StructureHierarchy
+
+### Commands
+
+    hierarchy [show|hide|refresh] [search text]
+    hierarchy marks FILE [#model]
+
+### Limitations
+
+Marks are not stored in mmCIF files. ChimeraX cannot write PDBQT, so marks are added to existing PDBQT files rather than creating new ones.
+
+### Citation
+
+Please cite: Bhowmik A. StructureHierarchy: a hierarchy-tree panel for UCSF ChimeraX (version 1.2.3). 2026. https://github.com/OriginalAyan/Lattice-StructureHierarchy
+
+### Development note
+
+This tool was developed with the assistance of Claude (Anthropic's AI assistant). The author, Ayan Bhowmik, is responsible for its testing and final deployment.
+
+Source code and issues: https://github.com/OriginalAyan/Lattice-StructureHierarchy
+  </Description>
+  <Categories>
+    <Category name="Structure Analysis"/>
+  </Categories>
+  <Dependencies>
+    <Dependency name="ChimeraX-Core" version="~=1.0"/>
+    <Dependency name="ChimeraX-UI" version="~=1.0"/>
+    <Dependency name="ChimeraX-Atomic" version="~=1.0"/>
+  </Dependencies>
+  <DataFiles>
+    <DataFile>docs/user/tools/structurehierarchy.html</DataFile>
+  </DataFiles>
+  <Classifiers>
+    <PythonClassifier>Development Status :: 3 - Alpha</PythonClassifier>
+    <PythonClassifier>Intended Audience :: Science/Research</PythonClassifier>
+    <PythonClassifier>License :: OSI Approved :: MIT License</PythonClassifier>
+    <PythonClassifier>Natural Language :: English</PythonClassifier>
+    <PythonClassifier>Programming Language :: Python :: 3</PythonClassifier>
+    <PythonClassifier>Topic :: Scientific/Engineering :: Chemistry</PythonClassifier>
+    <PythonClassifier>Topic :: Scientific/Engineering :: Visualization</PythonClassifier>
+    <ChimeraXClassifier>ChimeraX :: Tool :: Structure Hierarchy :: Structure Analysis :: Browse, search and select models, chains, residues and atoms as a tree</ChimeraXClassifier>
+    <ChimeraXClassifier>ChimeraX :: Command :: hierarchy :: Structure Analysis :: Show or hide the Structure Hierarchy panel, optionally with a search</ChimeraXClassifier>
+    <ChimeraXClassifier>ChimeraX :: Command :: hierarchy marks :: Structure Analysis :: Write Important marks into an existing PDB/PDBQT file</ChimeraXClassifier>
+  </Classifiers>
+</BundleInfo>

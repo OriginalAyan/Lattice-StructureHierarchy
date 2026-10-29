@@ -1,0 +1,32 @@
+<html><head><meta charset="utf-8"><title>Structure Hierarchy</title></head>
+<body>
+<h2>Structure Hierarchy</h2>
+<p>Tools &rarr; Structure Analysis &rarr; Structure Hierarchy, or the command <code>hierarchy</code>.</p>
+<p>Lists every open atomic model as a tree: model &rarr; chains &rarr; residues (name + number) &rarr; atoms.
+Ligands are green, ions orange, water grey.</p>
+<h3>Selecting</h3>
+<ul>
+<li>Click, Ctrl-click or Shift-click rows. The matching atoms become the ChimeraX selection, so every command and mouse mode works on them.</li>
+<li>Selecting atoms in the 3D window highlights and reveals them in the tree (untick "Follow 3D selection" to stop the tree expanding).</li>
+<li>Double-click zooms to a row. Right-click for show/hide, Color, Label, Important marks, select within a distance, and Delete.</li>
+</ul>
+<h3>Row buttons</h3>
+<ul>
+<li><b>Check box</b> (left): show or hide that model, chain, residue or atom.</li>
+<li><b>Star</b> (next to the check box, residues and atoms): mark as Important. "Important only" lists just the starred items.</li>
+<li><b>&#10005;</b> (right end): delete the row (or the whole selection if the row is part of it). Undo with Ctrl+Z.</li>
+</ul>
+<h3>Searching</h3>
+<p>The tree filters as you type. Separate several residues with a comma: <code>pro6, pro9</code>. Residue name, number, chain and atom names are searched:
+<code>101</code>, <code>pro101</code>, <code>A:101</code>, <code>hoh</code>, <code>ca</code>.</p>
+<h3>Select within a distance</h3>
+<p>Choose the radius (&Aring;) and residues or atoms, then press the button; tick "live" to follow your selection.</p>
+<h3>Important marks and files</h3>
+<p>Marks are saved as <code>REMARK 777 HIERARCHY-IMPORTANT</code> header lines in PDB/PDBQT files and restored when the file is opened.
+To add them to an existing file (for example docking poses): <code>hierarchy marks poses.pdbqt #1</code> or "Write &#9733; to file&hellip;".</p>
+<h3>Commands</h3>
+<p><code>hierarchy [show|hide|refresh] [search <i>text</i>]</code><br><code>hierarchy marks <i>file</i> [<i>model</i>]</code></p>
+<h3>Citation and credits</h3>
+<p>Bhowmik A. StructureHierarchy: a hierarchy-tree panel for UCSF ChimeraX (version 1.2.3). 2026. https://github.com/OriginalAyan/Lattice-StructureHierarchy</p>
+<p>Developed with the assistance of Claude (Anthropic's AI assistant); the author, Ayan Bhowmik, is responsible for testing and final deployment.</p>
+</body></html>
